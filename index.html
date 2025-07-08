@@ -12,40 +12,28 @@
 <body>
 
     <div class="sorter-container">
-        <div id="start-screen">
-            <h1>Bias Sorter - Rappeurs</h1>
-            <p>Cliquez pour classer vos rappeurs préférés.</p>
-            <button id="start-button">Commencer</button>
-        </div>
+        <h1>Bias Sorter - Rappeurs</h1>
+        <p class="instructions">
+            Choisissez qui vous préférez entre les deux pour obtenir votre classement. <br>
+            Utiliser les boutons du milieu affectera la précision des résultats.
+        </p>
 
-        <div id="main-game" class="hidden">
-            <div class="progress-container">
-                <div class="progress-bar" id="progressBar"></div>
-                <div class="progress-text" id="progressText">0%</div>
-            </div>
+        <div id="progress-area" style="text-align:center;"><b>battle #1<br>0% sorted.</b></div>
 
-            <h2 id="battle-counter"></h2>
-            
-            <div class="choices">
-                <div class="choice" id="choiceA">
-                    <button class="choice-btn" id="btnA"></button>
-                </div>
-                <div class="vs">VS</div>
-                <div class="choice" id="choiceB">
-                    <button class="choice-btn" id="btnB"></button>
-                </div>
-            </div>
+        <table id="main-table">
+            <tbody>
+                <tr>
+                    <td id="left-choice" rowspan="2"></td>
+                    <td class="middle-choice" id="tie-choice-1">J'aime les deux également</td>
+                    <td id="right-choice" rowspan="2"></td>
+                </tr>
+                <tr>
+                    <td class="middle-choice" id="tie-choice-2">Je n'ai pas d'avis</td>
+                </tr>
+            </tbody>
+        </table>
 
-            <div class="tie-button-container">
-                <button id="tie-button">Je ne peux pas choisir</button>
-            </div>
-        </div>
-        
-        <div id="results-screen" class="hidden">
-            <h1>Votre classement final</h1>
-            <ol id="results-list"></ol>
-            <button id="restart-button">Recommencer</button>
-        </div>
+        <div id="result-area"></div>
     </div>
 
     <script src="script.js"></script>
