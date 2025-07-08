@@ -1,24 +1,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Liste des rappeurs
+    // Liste des rappeurs (inchangée)
     const rappers = [
         "Booba", "Ninho", "Alpha Wann", "Nekfeu", "Damso", "La Fêve", "Zamdane",
         "Caballero", "Khali", "Laylow", "SCH", "Theodora", "Mairo", "Hamza",
         "Yvnnis", "NeS", "Luther", "Bekar", "Karmen", "H Jeunecrack"
     ];
 
-    // Variables globales inspirées du fichier source
-    let lstMember = [];
-    let parent = [];
-    let equal = [];
-    let rec = [];
-    let cmp1, cmp2;
-    let head1, head2;
-    let nrec;
-    let numQuestion;
-    let totalSize;
-    let finishSize;
-    let finishFlag;
+    // Variables globales
+    let lstMember, parent, equal, rec;
+    let cmp1, cmp2, head1, head2, nrec;
+    let numQuestion, totalSize, finishSize, finishFlag;
 
     // Éléments du DOM
     const leftChoice = document.getElementById('left-choice');
@@ -27,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tieChoice2 = document.getElementById('tie-choice-2');
     const progressArea = document.getElementById('progress-area');
     const resultArea = document.getElementById('result-area');
+    const battleWrapper = document.querySelector('.battle-wrapper');
 
     function initList() {
         lstMember = [];
@@ -43,7 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
         totalSize = 0;
         n++;
 
-        // Division de la liste en paires (logique de tri fusion)
         for (let i = 0; i < lstMember.length; i++) {
             if (lstMember[i].length >= 2) {
                 let mid = Math.ceil(lstMember[i].length / 2);
@@ -58,10 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        for (let i = 0; i < rappers.length; i++) { rec[i] = 0; }
+        rec = new Array(rappers.length).fill(0);
         nrec = 0;
-
-        for (let i = 0; i <= rappers.length; i++) { equal[i] = -1; }
+        
+        equal = new Array(rappers.length + 1).fill(-1);
 
         cmp1 = lstMember.length - 2;
         cmp2 = lstMember.length - 1;
@@ -72,70 +64,86 @@ document.addEventListener('DOMContentLoaded', () => {
         finishFlag = 0;
     }
 
+    // ==================================================================
+    // FONCTION DE TRI ENTIÈREMENT CORRIGÉE
+    // ==================================================================
     function sortList(flag) {
-        if (flag < 0) { // Clic à gauche
+        if (finishFlag) return;
+
+        // Stocke le choix dans le tableau de résultats temporaire 'rec'
+        if (flag < 0) {
             rec[nrec++] = lstMember[cmp1][head1++];
-        } else if (flag > 0) { // Clic à droite
+        } else if (flag > 0) {
             rec[nrec++] = lstMember[cmp2][head2++];
-        } else { // Match nul
+        } else {
             rec[nrec] = lstMember[cmp1][head1];
             equal[rec[nrec]] = lstMember[cmp2][head2];
             nrec++;
             head1++;
+            
             rec[nrec++] = lstMember[cmp2][head2++];
         }
 
         finishSize++;
 
+        // Si l'un des deux sous-tableaux est terminé, on copie le reste de l'autre
         if (head1 === lstMember[cmp1].length) {
             while (head2 < lstMember[cmp2].length) {
                 rec[nrec++] = lstMember[cmp2][head2++];
             }
-        }
-        if (head2 === lstMember[cmp2].length) {
+        } else if (head2 === lstMember[cmp2].length) {
             while (head1 < lstMember[cmp1].length) {
                 rec[nrec++] = lstMember[cmp1][head1++];
             }
         }
 
+        // Si les deux sous-tableaux sont terminés, on passe à l'étape de fusion suivante
         if (head1 === lstMember[cmp1].length && head2 === lstMember[cmp2].length) {
-            for (let i = 0; i < lstMember[cmp1].length + lstMember[cmp2].length; i++) {
+            // Copie le résultat trié dans le tableau parent
+            for (let i = 0; i < lstMember[parent[cmp1]].length; i++) {
                 lstMember[parent[cmp1]][i] = rec[i];
             }
+            
+            // On supprime les sous-tableaux qu'on vient de fusionner
             lstMember.pop();
             lstMember.pop();
+            
+            // On passe à la paire de sous-tableaux précédente
             cmp1 -= 2;
             cmp2 -= 2;
+            
+            // On réinitialise les compteurs pour la nouvelle fusion
             head1 = 0;
             head2 = 0;
-
-            for (let i = 0; i < rappers.length; i++) { rec[i] = 0; }
             nrec = 0;
+            rec.fill(0);
         }
 
+        // On vérifie si tout est terminé
         if (cmp1 < 0) {
             finishFlag = 1;
             showResult();
         } else {
-            numQuestion++;
             displayChoices();
         }
     }
 
     function displayChoices() {
-        let progress = Math.floor(finishSize * 100 / totalSize);
+        numQuestion++;
+        let progress = totalSize > 0 ? Math.floor(finishSize * 100 / totalSize) : 0;
         progressArea.innerHTML = `battle #${numQuestion}<br>${progress}% sorted.`;
+        
         leftChoice.textContent = rappers[lstMember[cmp1][head1]];
         rightChoice.textContent = rappers[lstMember[cmp2][head2]];
     }
 
     function showResult() {
         progressArea.style.display = 'none';
-        document.getElementById('main-table').style.display = 'none';
+        battleWrapper.style.display = 'none';
 
         let ranking = 1;
         let sameRank = 1;
-        let str = `<table><tr><th>Rang</th><th>Rappeur</th></tr>`;
+        let str = `<table><thead><tr><th>Rang</th><th>Rappeur</th></tr></thead><tbody>`;
         for (let i = 0; i < rappers.length; i++) {
             str += `<tr><td class="rank">${ranking}</td><td>${rappers[lstMember[0][i]]}</td></tr>`;
             if (i < rappers.length - 1) {
@@ -147,17 +155,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        str += "</table>";
+        str += "</tbody></table>";
         resultArea.innerHTML = str;
     }
 
     // Listeners
-    leftChoice.onclick = () => { if (!finishFlag) sortList(-1); };
-    rightChoice.onclick = () => { if (!finishFlag) sortList(1); };
-    tieChoice1.onclick = () => { if (!finishFlag) sortList(0); };
-    tieChoice2.onclick = () => { if (!finishFlag) sortList(0); };
+    leftChoice.onclick = () => sortList(-1);
+    rightChoice.onclick = () => sortList(1);
+    tieChoice1.onclick = () => sortList(0);
+    tieChoice2.onclick = () => sortList(0);
 
     // Démarrage
     initList();
     displayChoices();
+    // On met à jour l'affichage initial une seule fois
+    progressArea.innerHTML = `battle #1<br>0% sorted.`;
 });
