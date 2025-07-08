@@ -16,138 +16,83 @@ body {
     padding: 20px;
 }
 
-.hidden {
-    display: none;
-}
-
 h1 {
     font-weight: 900;
     font-size: 2.5rem;
 }
 
-button {
-    background-color: #1DB954;
-    color: #FFFFFF;
-    border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: background-color 0.2s, transform 0.2s;
-}
-
-button:hover {
-    background-color: #1ED760;
-    transform: scale(1.05);
-}
-
-#start-screen p {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-}
-
-.progress-container {
-    width: 100%;
-    background-color: #444;
-    border-radius: 10px;
-    margin: 20px 0;
-    position: relative;
-    height: 30px;
-}
-
-.progress-bar {
-    width: 0%;
-    height: 100%;
-    background-color: #1DB954;
-    border-radius: 10px;
-    transition: width 0.5s ease-in-out;
-}
-
-.progress-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-weight: 700;
-    color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
-}
-
-
-#battle-counter {
-    font-size: 1.5rem;
+.instructions {
+    font-size: 1rem;
+    color: #b3b3b3;
     margin-bottom: 20px;
 }
 
-.choices {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 20px 0;
+#progress-area {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-.vs {
-    font-size: 2rem;
-    font-weight: 900;
+#main-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 15px;
 }
 
-.choice-btn {
-    width: 300px;
-    height: 100px;
+#left-choice, #right-choice {
+    width: 40%;
+    height: 150px;
+    background-color: #282828;
+    border-radius: 15px;
     font-size: 1.8rem;
     font-weight: 700;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #282828;
+    cursor: pointer;
+    transition: background-color 0.2s, border 0.2s;
     border: 2px solid transparent;
-    border-radius: 15px;
 }
 
-.choice-btn:hover {
-    border-color: #1DB954;
+#left-choice:hover, #right-choice:hover {
     background-color: #333;
+    border-color: #1DB954;
 }
 
-.tie-button-container {
-    margin-top: 20px;
-}
-
-#tie-button {
+.middle-choice {
+    width: 20%;
+    height: 65px;
     background-color: #555;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
 }
 
-#tie-button:hover {
+.middle-choice:hover {
     background-color: #777;
 }
 
-#results-screen ol {
-    list-style-type: none;
-    padding: 0;
-    margin: 30px 0;
+#result-area table {
+    width: 80%;
+    max-width: 500px;
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin: 30px auto;
+    border: 1px solid #444;
+    border-collapse: collapse;
 }
 
-#results-screen li {
-    background-color: #282828;
-    margin: 10px 0;
-    padding: 15px;
-    border-radius: 10px;
-    font-size: 1.3rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
+#result-area th {
+    color: #FFFFFF;
+    background-color: #1DB954;
+    padding: 10px;
 }
 
-#results-screen li .rank {
-    font-size: 1.5rem;
+#result-area td {
+    border: 1px solid #444;
+    padding: 10px;
+}
+
+#result-area .rank {
     font-weight: 900;
     color: #1DB954;
-    margin-right: 20px;
-    min-width: 30px;
-    text-align: right;
-}
-
-#restart-button {
-    margin-top: 20px;
+    text-align: center;
 }
