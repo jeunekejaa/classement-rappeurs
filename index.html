@@ -14,24 +14,21 @@
     <div class="sorter-container">
         <h1>Bias Sorter - Rappeurs</h1>
         <p class="instructions">
-            Choisissez qui vous préférez entre les deux pour obtenir votre classement. <br>
-            Utiliser les boutons du milieu affectera la précision des résultats.
+            Choisissez qui vous préférez entre les deux pour obtenir votre classement.
         </p>
 
         <div id="progress-area" style="text-align:center;"><b>battle #1<br>0% sorted.</b></div>
 
-        <table id="main-table">
-            <tbody>
-                <tr>
-                    <td id="left-choice" rowspan="2"></td>
-                    <td class="middle-choice" id="tie-choice-1">J'aime les deux également</td>
-                    <td id="right-choice" rowspan="2"></td>
-                </tr>
-                <tr>
-                    <td class="middle-choice" id="tie-choice-2">Je n'ai pas d'avis</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="battle-wrapper">
+            <button class="choice-btn" id="left-choice"></button>
+
+            <div class="middle-column">
+                <button class="tie-btn" id="tie-choice-1">J'aime les deux également</button>
+                <button class="tie-btn" id="tie-choice-2">Je n'ai pas d'avis</button>
+            </div>
+
+            <button class="choice-btn" id="right-choice"></button>
+        </div>
 
         <div id="result-area"></div>
     </div>
