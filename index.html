@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bias Sorter - Rappeurs</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="sorter-container">
+        <div id="start-screen">
+            <h1>Bias Sorter - Rappeurs</h1>
+            <p>Cliquez pour classer vos rappeurs préférés.</p>
+            <button id="start-button">Commencer</button>
+        </div>
+
+        <div id="main-game" class="hidden">
+            <div class="progress-container">
+                <div class="progress-bar" id="progressBar"></div>
+                <div class="progress-text" id="progressText">0%</div>
+            </div>
+
+            <h2 id="battle-counter"></h2>
+            
+            <div class="choices">
+                <div class="choice" id="choiceA">
+                    <button class="choice-btn" id="btnA"></button>
+                </div>
+                <div class="vs">VS</div>
+                <div class="choice" id="choiceB">
+                    <button class="choice-btn" id="btnB"></button>
+                </div>
+            </div>
+
+            <div class="tie-button-container">
+                <button id="tie-button">Je ne peux pas choisir</button>
+            </div>
+        </div>
+        
+        <div id="results-screen" class="hidden">
+            <h1>Votre classement final</h1>
+            <ol id="results-list"></ol>
+            <button id="restart-button">Recommencer</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
