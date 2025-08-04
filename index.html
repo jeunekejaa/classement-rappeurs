@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Base44 App</title>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <!-- Babel pour compiler le JSX dans le navigateur -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <!-- Tes composants : assure-toi que les noms mat​chent -->
+  <script type="text/babel" src="AdminLogin.jsx"></script>
+  <script type="text/babel" src="AdminPanel.jsx"></script>
+  <script type="text/babel" src="BattleInterface.jsx"></script>
+  <script type="text/babel" src="BiasSort.jsx"></script>
+  <script type="text/babel" src="CurrentRankingModal.jsx"></script>
+  <script type="text/babel" src="MergeProgress.jsx"></script>
+  <script type="text/babel" src="ResultsDisplay.jsx"></script>
+
+  <!-- Montage final : change <BattleInterface/> pour le component racine que tu veux afficher -->
+  <script type="text/babel">
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<BattleInterface />);
+  </script>
+</body>
+</html>
