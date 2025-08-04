@@ -1,45 +1,32 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Classement Rappeurs</title>
 </head>
 <body>
   <div id="root"></div>
 
-  <!-- React + ReactDOM depuis CDN -->
+  <!-- 1) React + ReactDOM -->
   <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-  <!-- Babel pour compiler JSX dans le navigateur -->
+  <!-- 2) Babel pour compiler le JSX -->
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-  <!-- Tes composants via jsDelivr -->
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/AdminLogin.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/AdminPanel.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/BattleInterface.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/BiasSort.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/CurrentRankingModal.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/MergeProgress.jsx">
-  </script>
-  <script type="text/babel"
-    src="https://cdn.jsdelivr.net/gh/jeunekejaa/classement-rappeurs@main/ResultsDisplay.jsx">
-  </script>
+  <!-- 3) Tes composants, chargés depuis la racine -->
+  <script type="text/babel" data-presets="react" src="./CurrentRankingModal.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./MergeProgress.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./ResultsDisplay.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./AdminLogin.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./AdminPanel.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./BattleInterface.jsx"></script>
+  <script type="text/babel" data-presets="react" src="./BiasSort.jsx"></script>
 
-  <!-- Monté ton component racine (ici BattleInterface) -->
-  <script type="text/babel">
+  <!-- 4) Montage du composant racine -->
+  <script type="text/babel" data-presets="react">
     const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<BattleInterface />);
+    // Change <BiasSort/> pour afficher le composant que tu veux au lancement
+    root.render(<BiasSort />);
   </script>
 </body>
 </html>
